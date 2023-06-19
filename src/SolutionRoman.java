@@ -7,6 +7,7 @@ public class SolutionRoman {
         System.out.println(romanToInt("III")); // 3
         System.out.println(romanToInt("LVIII")); // 58
         System.out.println(romanToInt("MCMXCIV")); // 1994
+        System.out.println(romanToInt("LVIII")); // 58
     }
 
     public static int romanToInt(String s) {
@@ -20,14 +21,14 @@ public class SolutionRoman {
         map.put('M', 1000);
         int result = 0;
         int previous = 0;
-        for (Character c : s.toCharArray()) {
-            int current = map.get(c);
-            if (current < previous){
-                result -= current;
-            }else {
-                result += current;
+        for (char c : s.toCharArray()) {
+            int currValue = map.get(c);
+            if (currValue > previous) {
+                result += currValue - 2 * previous;
+            } else {
+                result += currValue;
             }
-            previous = current;
+            previous = currValue;
         }
         return result;
     }
