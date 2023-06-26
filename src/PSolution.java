@@ -6,11 +6,21 @@ public class PSolution {
   }
 
   public static boolean isPalindrome(String s) {
-    char[] chars = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase().toCharArray();
     int pointerA = 0;
-    int pointerB = chars.length-1;
+    int pointerB = s.length() - 1;
     while (pointerA < pointerB) {
-      if (chars[pointerA] != chars[pointerB]){
+      Character a = s.charAt(pointerA);
+      Character b = s.charAt(pointerB);
+      if (!Character.isLetterOrDigit(a)) {
+        pointerA++;
+        continue;
+      }
+      if (!Character.isLetterOrDigit(b)) {
+        pointerB--;
+        continue;
+      }
+
+      if (Character.toLowerCase(a) != Character.toLowerCase(b)) {
         return false;
       }
       pointerA++;
